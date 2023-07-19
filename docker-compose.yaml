@@ -1,0 +1,13 @@
+services:
+  dummy-job:
+    container_name: dummy-job
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - PYTHON_SCRIPT=/input/main.py
+      - INPUT_DIRECTORY=/input/
+      - DESTINATION=/output/result
+    volumes:
+      - ./resources/:/input/
+      - ./output/:/output/

@@ -1,5 +1,13 @@
 #!/bin/sh
 
+if [[ -n "$PYTHON_SCRIPT"  || -f "$PYTHON_SCRIPT" ]]; then
+    echo "python ${PYTHON_SCRIPT}"
+
+    cd $(dirname ${PYTHON_SCRIPT})
+    python $(basename ${PYTHON_SCRIPT})
+    exit $?
+fi
+
 sleeptime="${SLEEPTIME:-10}"
 if [[ -z "$SOURCE" || -z "$DESTINATION" ]]; then
     echo "FAIL: SOURCE or DESTINATION unset"
