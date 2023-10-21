@@ -1,0 +1,46 @@
+{
+  "service_id": "input-dummy",
+  "inputs": [
+    {
+      "resource_name": "env",
+      "type": 1,
+      "description": "List of environment Variables for dummy-job Container"
+    },
+    {
+      "resource_name": "input.zip",
+      "type": 3,
+      "mount_path": "/data/",
+      "description": "Input File which is used in the worker image"
+    },
+    {
+      "resource_name": "input_testfile",
+      "type": 2,
+      "mount_path": "/data/",
+      "description": "Input File which is used in the worker image"
+    },
+    {
+      "resource_name": "entrypoint.sh",
+      "type": 2,
+      "mount_path": "/app/",
+      "description": "Overwrite the entrypoint script with your own"
+    }
+  ],
+  "outputs": [
+    {
+      "resource_name": "result",
+      "type": 2,
+      "description": "dummy output file"
+    }
+  ],
+  "workflow_resource": {
+    "worker_image": "ralphhso/dummy-job:latest",
+    "worker_image_output_directory": "/output/",
+    "worker_image_args": [
+      "entrypoint.sh"
+    ],
+    "worker_image_command": [
+      "/bin/sh"
+    ],
+    "gpu": false
+  }
+}
